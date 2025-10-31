@@ -1,0 +1,79 @@
+CREATE OR REPLACE PROCEDURE generate employee report is --Define variables to hold each column's data
+
+v_DeptName
+
+VARCHAR2 (255);
+
+v EmpName
+
+VARCHAR2 (255);
+
+v Job
+
+VARCHAR2 (255);
+
+v Location
+
+VARCHAR2 (255);
+
+v Salary
+
+NUMBER:
+
+v_Cumulative_Salary NUMBER:
+
+BEGIN
+
+Output headers
+
+DBMS_OUTPUT.PUT_LINE('Dept Name | EmpName | Job | Location | Salary Cumulative_Salary'); );
+
+DEMS OUTPUT.PUT LINE(
+
+Loop through the department and employee data without an explicit cursor
+
+FOR rec IN (SELECT d. Dept.Name,
+
+e. EmpName,
+
+e.Salary,
+
+d.deptloc,
+
+SUM(e.Salary) OVER (PARTITION BY d. DeptId ORDER BY e. EmpName) AS Cumulative_Salary
+
+FROM Employee e
+
+JOIN Department d ON e. Deptid
+
+d. Dept. Id
+
+ORDER BY d. DeptName, e. EmpName)
+
+LOOP
+
+e.Job,
+
+Display each record
+
+DBMS OUTPUT.PUT LINE(rec.DeptName || ||
+
+rec. EmpName
+
+rec.Job || וויו
+
+rec.deptloc
+
+rec.Salary
+
+rec.Cumulative_Salary);
+
+END LOOP;
+
+END;
+
+begin
+
+generate_employee_report():
+
+end
