@@ -1,0 +1,55 @@
+CREATE OR REPLACE TRIGGER emp_del_trig
+
+AFTER DELETE ON employee
+
+FOR EACH ROW
+
+DECLARE
+
+v empno
+
+employee.empid&TYPE;
+
+v empname
+
+employee.empname%TYPE;
+
+v empdob
+
+employee.dob&TYPE;
+
+v empdoj
+
+employee.doj&TYPE;
+
+vempjob
+
+employee.job TYPE;
+
+v_empsalary
+
+employee.salary&TYPE;
+
+v_deptno
+
+employee.deptid&TYPE;
+
+BEGIN
+
+v_empno :: OLD.empid;
+
+v_empname := : OLD.empname;
+
+v_empdob : : OLD.dob;
+
+v_empdoj := : OLD.doj;
+
+v_empsalary := : OLD.salary;
+
+v deptno = : OLD.deptid;
+
+INSERT INTO oldemployee VALUES (v empno, v empname, v empdob, v empdoj,v empjob, v empsalary, v deptno);
+
+END;
+
+/
