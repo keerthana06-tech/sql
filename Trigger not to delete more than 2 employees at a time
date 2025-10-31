@@ -1,0 +1,25 @@
+CREATE OR REPLACE TRIGGER emp delete
+
+BEFORE DELETE ON employee
+
+DECLARE
+
+emp count NUMBER;
+
+BEGIN
+
+Count number of rows deleted
+
+SELECT COUNT(*) INTO emp count FROM employee WHERE empid IN (SELECT empid FROM deleted rows);
+
+If more than 2 rows are being deleted, raise an error
+
+IF emp count > 2 THEN
+
+RAISE_APPLICATION_ERROR(-20001, 'You cannot delete more than 2 employees at a time.');
+
+END IF;
+
+END;
+
+/
